@@ -24,5 +24,10 @@ namespace WpfTestRoslyn
         {
             InitializeComponent();
         }
+
+        private void runButton_Click(object sender, RoutedEventArgs e)
+        {
+            resultTextBox.Text = codeTextBox.Text;
+        }
     }
 }

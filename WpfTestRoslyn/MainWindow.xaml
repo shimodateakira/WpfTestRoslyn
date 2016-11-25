@@ -5,8 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfTestRoslyn"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="372.869" Width="525">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <TextBox x:Name="codeTextBox" Margin="10,10,10,5" Text="Hello, World!" FontFamily="MS Mincho" FontSize="16" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True"/>
+        <Button x:Name="runButton" Content="Run" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="runButton_Click"/>
+        <TextBox x:Name="resultTextBox" Margin="10" Grid.Row="2" FontFamily="MS Mincho" FontSize="16" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True"/>
     </Grid>
 </Window>
