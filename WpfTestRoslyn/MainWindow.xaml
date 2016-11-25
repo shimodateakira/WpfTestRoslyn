@@ -12,7 +12,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="100*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="codeTextBox" Margin="10,10,10,5" Text="using WpfTestRoslyn;&#xD;&#xA;&#xD;&#xA;public class Child : Parent&#xD;&#xA;{&#xD;&#xA;    public override string Method()&#xD;&#xA;    {&#xD;&#xA;        return &quot;Hello, World!&quot;;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return new Child();&#xD;&#xA;" FontFamily="MS Mincho" FontSize="16" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True"/>
+        <TextBox x:Name="codeTextBox" Margin="10,10,10,5" Text="using WpfTestRoslyn;&#xD;&#xA;&#xD;&#xA;public class HelloMessage : IHello&#xD;&#xA;{&#xD;&#xA;    public string Hello()&#xD;&#xA;    {&#xD;&#xA;        return &quot;Hello, World!&quot;;&#xD;&#xA;    }&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;return new HelloMessage();&#xD;&#xA;" FontFamily="MS Mincho" FontSize="16" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True"/>
         <Button x:Name="runButton" Content="Run" HorizontalAlignment="Left" Margin="10,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="runButton_Click"/>
         <TextBox x:Name="resultTextBox" Margin="10" Grid.Row="2" FontFamily="MS Mincho" FontSize="16" HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto" AcceptsReturn="True" AcceptsTab="True" AutoWordSelection="True"/>
         <Button x:Name="resetButton" Content="Reset" HorizontalAlignment="Left" Margin="90,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="75" Click="resetButton_Click"/>

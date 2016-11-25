@@ -34,12 +34,12 @@ namespace WpfTestRoslyn
             Stopwatch sw = new Stopwatch();
 
             sw.Start();
-            var script = CSharpScript.Create<Parent>(codeTextBox.Text).WithOptions(ScriptOptions.Default.WithReferences(Assembly.GetEntryAssembly()));
+            var script = CSharpScript.Create<IHello>(codeTextBox.Text).WithOptions(ScriptOptions.Default.WithReferences(Assembly.GetEntryAssembly()));
             var result = script.RunAsync().Result;
             var value = result.ReturnValue;
             sw.Stop();
 
-            resultTextBox.Text = value.Method();
+            resultTextBox.Text = value.Hello();
             timeSpanTextBlock.Text = sw.Elapsed.ToString();
         }
 
@@ -48,8 +48,8 @@ namespace WpfTestRoslyn
             resultTextBox.Text = "";
         }
     }
-    public abstract class Parent
+    public interface IHello
     {
-        public abstract string Method();
+        string Hello();
     }
 }
