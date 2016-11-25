@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Microsoft.CodeAnalysis.Scripting;
+using Microsoft.CodeAnalysis.CSharp.Scripting;
+using System.Reflection;
+using System.Diagnostics;
 
 namespace WpfTestRoslyn
 {
@@ -27,7 +31,25 @@ namespace WpfTestRoslyn
 
         private void runButton_Click(object sender, RoutedEventArgs e)
         {
-            resultTextBox.Text = codeTextBox.Text;
+            Stopwatch sw = new Stopwatch();
+
+            sw.Start();
+            var script = CSharpScript.Create<Parent>(codeTextBox.Text).WithOptions(ScriptOptions.Default.WithReferences(Assembly.GetEntryAssembly()));
+            var result = script.RunAsync().Result;
+            var value = result.ReturnValue;
+            sw.Stop();
+
+            resultTextBox.Text = value.Method();
+            timeSpanTextBlock.Text = sw.Elapsed.ToString();
         }
+
+        private void resetButton_Click(object sender, RoutedEventArgs e)
+        {
+            resultTextBox.Text = "";
+        }
+    }
+    public abstract class Parent
+    {
+        public abstract string Method();
     }
 }
