@@ -35,17 +35,27 @@ namespace WpfTestRoslyn
 
             sw.Start();
             var script = CSharpScript.Create<IHello>(codeTextBox.Text).WithOptions(ScriptOptions.Default.WithReferences(Assembly.GetEntryAssembly()));
-            var result = script.RunAsync().Result;
-            var value = result.ReturnValue;
-            sw.Stop();
-
-            resultTextBox.Text = value.Hello();
-            timeSpanTextBlock.Text = sw.Elapsed.ToString();
+            try
+            {
+                var result = script.RunAsync().Result;
+                var value = result.ReturnValue;
+                resultTextBox.Text = value.Hello();
+            }
+            catch (CompilationErrorException exception)
+            {
+                resultTextBox.Text = exception.ToString();
+            }
+            finally
+            {
+                sw.Stop();
+                timeSpanTextBlock.Text = sw.Elapsed.ToString();
+            }
         }
 
         private void resetButton_Click(object sender, RoutedEventArgs e)
         {
             resultTextBox.Text = "";
+            timeSpanTextBlock.Text = "";
         }
     }
     public interface IHello
